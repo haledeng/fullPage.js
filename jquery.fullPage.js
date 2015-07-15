@@ -2188,9 +2188,11 @@
         * After this function is called, the mousewheel and trackpad movements will scroll through sections
         */
         function addMouseWheelHandler(){
+            var isIE9 = navigator.userAgent.indexOf("MSIE 9.0") > 0;
             if (document.addEventListener) {
                 document.addEventListener('mousewheel', MouseWheelHandler, false); //IE9, Chrome, Safari, Oper
-                document.addEventListener('wheel', MouseWheelHandler, false); //Firefox
+                // IE9 mousewheel and wheel
+                !isIE9 && document.addEventListener('wheel', MouseWheelHandler, false); //Firefox
                 document.addEventListener('DOMMouseScroll', MouseWheelHandler, false); //Old Firefox
             } else {
                 document.attachEvent('onmousewheel', MouseWheelHandler); //IE 6/7/8
